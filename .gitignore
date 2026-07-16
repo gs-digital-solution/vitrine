@@ -1,0 +1,42 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static/
+.DS_Store
+
+# Secrets
+.env
+.env.local
+.env.prod
+*.key
+*.pem
+
+# IDE (PyCharm)
+.idea/
+.vscode/
+*.iml
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
+*.swo
