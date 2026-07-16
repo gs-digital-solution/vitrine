@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }} - {{ site_config.company_name }}{% endblock %}
+
+{% block content %}
+<section class="product-detail py-5">
+    <div class="container">
+        <!-- Fil d'Ariane -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'products' %}">Produits</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Galerie d'images -->
+            <div class="col-lg-6 mb-4">
+                {% if product.images.all %}
+                    <!-- Image principale (la première) -->
+                    <div class="main-image mb-3">
+                        <img src="{{ product.images.first.image.url }}" class="img-fluid rounded shadow" alt="{{ product.title }}" style="width:100%; max-height:500px; object-fit:contain; background:#f8f9fa;">
+                    </div>
+                    <!-- Miniatures -->
+                    <div class="row g-2">
+                        {% for photo in product.images.all %}
+                        <div class="col-3">
+                            <img src="{{ photo.image.url }}" class="img-fluid rounded shadow-sm" alt="{{ photo.title|default:product.title }}" style="height:100px; object-fit:cover; cursor:pointer;" onclick="this.parentElement.parentElement.parentElement.querySelector('.main-image img').src = this.src;">
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <!-- Fallback si pas de galerie -->
+                    <img src="{{ product.image.url }}" class="img-fluid rounded shadow" alt="{{ product.title }}" style="width:100%; max-height:500px; object-fit:contain;">
+                {% endif %}
+            </div>
+
+            <!-- Infos produit -->
+            <div class="col-lg-6">
+                <h1 class="display-6 fw-bold">{{ product.title }}</h1>
+                
+                <!-- Description complète (avec mise en forme) -->
+                <div class="rich-text mt-4">
+                    {{ product.description|safe }}
+                </div>
+
+                <!-- Liens -->
+                <div class="mt-4 d-flex flex-wrap gap-3">
+                    {% if product.playstore_url %}
+                    <a href="{{ product.playstore_url }}" target="_blank" class="btn btn-success btn-lg">
+                        <i class="fab fa-google-play"></i> Télécharger sur Play Store
+                    </a>
+                    {% endif %}
+                    {% if product.video_url %}
+                    <a href="{{ product.video_url }}" target="_blank" class="btn btn-danger btn-lg">
+                        <i class="fas fa-play"></i> Voir la vidéo
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="mt-4">
+                    <a href="{% url 'products' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Retour aux produits
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

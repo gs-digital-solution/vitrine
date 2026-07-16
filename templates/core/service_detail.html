@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - {{ site_config.company_name }}{% endblock %}
+
+{% block content %}
+<section class="service-detail py-5">
+    <div class="container">
+        <!-- Fil d'Ariane -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'services' %}">Services</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ service.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Galerie d'images -->
+            <div class="col-lg-6 mb-4">
+                {% if service.images.all %}
+                    <div class="main-image mb-3">
+                        <img src="{{ service.images.first.image.url }}" class="img-fluid rounded shadow" alt="{{ service.title }}" style="width:100%; max-height:500px; object-fit:contain; background:#f8f9fa;">
+                    </div>
+                    <div class="row g-2">
+                        {% for photo in service.images.all %}
+                        <div class="col-3">
+                            <img src="{{ photo.image.url }}" class="img-fluid rounded shadow-sm" alt="{{ photo.title|default:service.title }}" style="height:100px; object-fit:cover; cursor:pointer;" onclick="this.parentElement.parentElement.parentElement.querySelector('.main-image img').src = this.src;">
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <img src="{{ service.image.url }}" class="img-fluid rounded shadow" alt="{{ service.title }}" style="width:100%; max-height:500px; object-fit:contain;">
+                {% endif %}
+            </div>
+
+            <!-- Infos service -->
+            <div class="col-lg-6">
+                <h1 class="display-6 fw-bold">{{ service.title }}</h1>
+                
+                <div class="rich-text mt-4">
+                    {{ service.description|safe }}
+                </div>
+
+                <!-- Réalisations -->
+                {% if service.achievements.all %}
+                <div class="mt-4">
+                    <h4>Réalisations</h4>
+                    <div class="row g-3">
+                        {% for achievement in service.achievements.all %}
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                {% if achievement.image %}
+                                <img src="{{ achievement.image.url }}" class="card-img-top" alt="{{ achievement.title }}" style="height:150px; object-fit:cover;">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ achievement.title }}</h5>
+                                    {% if achievement.client_name %}
+                                    <p class="card-text"><small class="text-muted">Client : {{ achievement.client_name }}</small></p>
+                                    {% endif %}
+                                    {% if achievement.project_url %}
+                                    <a href="{{ achievement.project_url }}" target="_blank" class="btn btn-sm btn-outline-primary">Voir le projet</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="mt-4">
+                    <a href="{% url 'services' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Retour aux services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

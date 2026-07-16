@@ -1,0 +1,22 @@
+{
+  "name": "{{ site_config.company_name }}",
+  "short_name": "{{ site_config.company_name }}",
+  "description": "Site vitrine de {{ site_config.company_name }}",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6efd",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

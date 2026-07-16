@@ -1,0 +1,165 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ site_config.company_name }} - Accueil{% endblock %}
+
+{% block content %}
+<!-- ========================================== -->
+<!-- BANNIÈRE HERO                              -->
+<!-- ========================================== -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-3 fw-bold">{{ site_config.hero_title }}</h1>
+                <p class="lead mt-3">{{ site_config.hero_subtitle }}</p>
+                <a href="{{ site_config.hero_cta_url }}" class="btn btn-light btn-lg mt-3">
+                    {{ site_config.hero_cta_text }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- PRODUITS (3 derniers)                      -->
+<!-- ========================================== -->
+{% if products %}
+<section class="products-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Nos produits</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}" style="height:200px; object-fit:cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text">{{ product.description|safe|truncatewords_html:20 }}</p>
+                        {% if product.playstore_url %}
+                        <a href="{{ product.playstore_url }}" target="_blank" class="btn btn-success btn-sm">
+                            <i class="fab fa-google-play"></i> Télécharger
+                        </a>
+                        {% endif %}
+                        {% if product.video_url %}
+                        <a href="{{ product.video_url }}" target="_blank" class="btn btn-danger btn-sm">
+                            <i class="fas fa-play"></i> Voir la vidéo
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'products' %}" class="btn btn-outline-primary">Voir tous les produits</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ========================================== -->
+<!-- SERVICES (3 derniers)                      -->
+<!-- ========================================== -->
+{% if services %}
+<section class="services-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Nos services</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="height:200px; object-fit:cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|safe|truncatewords_html:20 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'services' %}" class="btn btn-outline-primary">Voir tous les services</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ========================================== -->
+<!-- TÉMOIGNAGES                                -->
+<!-- ========================================== -->
+
+{% if testimonials %}
+<section class="testimonials-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Ce qu'ils disent de nous</h2>
+        <div class="row">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card-body">
+                        <p class="card-text fst-italic">"{{ testimonial.message }}"</p>
+                        <footer class="blockquote-footer">{{ testimonial.name }}</footer>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'testimonial_add' %}" class="btn btn-primary">
+                <i class="fas fa-pen"></i> Faire un témoignage
+            </a>
+        </div>
+    </div>
+</section>
+{% else %}
+<!-- Si pas de témoignages, on affiche quand même le bouton -->
+<section class="testimonials-section py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Partagez votre expérience</h2>
+        <p class="mb-4">Soyez le premier à laisser un témoignage !</p>
+        <a href="{% url 'testimonial_add' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-pen"></i> Faire un témoignage
+        </a>
+    </div>
+</section>
+{% endif %}
+<!-- ========================================== -->
+<!-- SECTION CONTACT                            -->
+<!-- ========================================== -->
+<section id="contact" class="contact-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Contactez-nous</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p><i class="fas fa-map-marker-alt text-primary"></i> {{ site_config.address }}</p>
+                        <p><i class="fas fa-phone text-primary"></i> {{ site_config.phone }}</p>
+                        <p><i class="fas fa-envelope text-primary"></i> {{ site_config.email }}</p>
+                        {% if site_config.facebook_url or site_config.linkedin_url %}
+                        <hr>
+                        <div class="text-center">
+                            {% if site_config.facebook_url %}
+                            <a href="{{ site_config.facebook_url }}" target="_blank" class="btn btn-outline-primary me-2">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            {% endif %}
+                            {% if site_config.linkedin_url %}
+                            <a href="{{ site_config.linkedin_url }}" target="_blank" class="btn btn-outline-primary">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
