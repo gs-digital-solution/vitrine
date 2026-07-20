@@ -27,7 +27,7 @@
     <!-- Font Awesome 6 (icônes) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Vos styles personnalisés (on créera ce fichier plus tard) -->
+    <!-- Vos styles personnalisés -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <!-- PWA manifest -->
     <link rel="manifest" href="{% url 'manifest' %}">
@@ -68,11 +68,10 @@
     </nav>
 
     <!-- ========================================== -->
-    <!-- CONTENU PRINCIPAL (changera selon la page) -->
+    <!-- CONTENU PRINCIPAL                          -->
     <!-- ========================================== -->
     <main>
         {% block content %}
-        <!-- Le contenu spécifique sera injecté ici -->
         {% endblock %}
     </main>
 
@@ -82,12 +81,15 @@
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
+                <!-- Colonne 1 : Coordonnées -->
                 <div class="col-md-4 mb-3">
                     <h5>{{ site_config.company_name }}</h5>
                     <p>{{ site_config.address }}</p>
                     <p><i class="fas fa-phone"></i> {{ site_config.phone }}</p>
                     <p><i class="fas fa-envelope"></i> {{ site_config.email }}</p>
                 </div>
+
+                <!-- Colonne 2 : Liens rapides -->
                 <div class="col-md-4 mb-3">
                     <h5>Liens rapides</h5>
                     <ul class="list-unstyled">
@@ -96,21 +98,30 @@
                         <li><a href="{% url 'services' %}" class="text-white-50 text-decoration-none">Services</a></li>
                     </ul>
                 </div>
+
+                <!-- Colonne 3 : Réseaux sociaux + Compteur -->
                 <div class="col-md-4 mb-3">
                     <h5>Suivez-nous</h5>
-                    {% if site_config.facebook_url %}
-                    <a href="{{ site_config.facebook_url }}" class="text-white me-2" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
-                    {% endif %}
-                    {% if site_config.linkedin_url %}
-                    <a href="{{ site_config.linkedin_url }}" class="text-white me-2" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-                    {% endif %}
-                    <div class="mt-2">
+                    <div class="social-links">
+                        {% if site_config.facebook_url %}
+                        <a href="{{ site_config.facebook_url }}" class="text-white" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_config.linkedin_url %}
+                        <a href="{{ site_config.linkedin_url }}" class="text-white" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="mt-3">
                         <span class="badge bg-secondary">
                             <i class="fas fa-eye"></i> {{ visitor_count }} visiteurs
                         </span>
                     </div>
                 </div>
             </div>
+            <!-- Copyright -->
             <div class="text-center pt-3 border-top border-secondary">
                 <p class="mb-0">&copy; {{ site_config.footer_copyright }}</p>
             </div>
@@ -123,6 +134,7 @@
     <!-- Vos scripts personnalisés -->
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_scripts %}{% endblock %}
+
     <!-- Service Worker Registration -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -130,8 +142,10 @@
             .then(reg => console.log('Service Worker enregistré', reg))
             .catch(err => console.error('Erreur SW', err));
     }
-   </script>
-   <script>
+    </script>
+
+    <!-- PWA Installation Button -->
+    <script>
     let deferredPrompt;
     const installBtn = document.createElement('button');
     installBtn.id = 'installPwaBtn';
@@ -161,6 +175,6 @@
         installBtn.style.display = 'none';
         console.log('App installée !');
     });
-   </script>
+    </script>
 </body>
 </html>
