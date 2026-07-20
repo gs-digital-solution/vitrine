@@ -13,14 +13,11 @@ venv.bak/
 # Django
 *.log
 *.pot
-*.pyc
-__pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
 staticfiles/
-static/
 .DS_Store
 
 # Secrets
@@ -40,3 +37,11 @@ static/
 *.bak
 *.swp
 *.swo
+
+# ==========================================
+# Fichiers statiques (on ignore tout SAUF ce qui est important)
+# ==========================================
+static/
+!static/css/
+!static/js/
+!static/icons/
