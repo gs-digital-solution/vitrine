@@ -108,6 +108,26 @@
                             <i class="fab fa-facebook fa-2x"></i>
                         </a>
                         {% endif %}
+                        {% if site_config.instagram_url %}
+                        <a href="{{ site_config.instagram_url }}" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_config.youtube_url %}
+                        <a href="{{ site_config.youtube_url }}" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube fa-2x"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_config.tiktok_url %}
+                        <a href="{{ site_config.tiktok_url }}" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok fa-2x"></i>
+                        </a>
+                        {% endif %}
+                        {% if site_config.telegram_url %}
+                        <a href="{{ site_config.telegram_url }}" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane fa-2x"></i>
+                        </a>
+                        {% endif %}
                         {% if site_config.linkedin_url %}
                         <a href="{{ site_config.linkedin_url }}" class="text-white" target="_blank" aria-label="LinkedIn">
                             <i class="fab fa-linkedin fa-2x"></i>
@@ -176,5 +196,16 @@
         console.log('App installée !');
     });
     </script>
+
+<!-- Bouton WhatsApp flottant -->
+{% if site_config.whatsapp_number %}
+<a href="https://wa.me/{{ site_config.whatsapp_number }}?text={{ site_config.whatsapp_message|default:''|urlencode }}"
+   target="_blank"
+   class="btn btn-whatsapp position-fixed bottom-0 end-0 m-4 z-3"
+   style="border-radius:50px; padding:12px 20px; font-size:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.25); background-color:#25D366; border-color:#25D366;"
+   aria-label="Contactez-nous sur WhatsApp">
+   <i class="fab fa-whatsapp fa-2x me-2"></i> WhatsApp
+</a>
+{% endif %}
 </body>
 </html>

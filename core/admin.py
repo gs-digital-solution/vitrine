@@ -124,13 +124,16 @@ class SiteConfigAdmin(admin.ModelAdmin):
             'fields': ('company_name', 'address', 'phone', 'email')
         }),
         ('Réseaux sociaux', {
-            'fields': ('facebook_url', 'linkedin_url')
+            'fields': ('facebook_url', 'linkedin_url', 'instagram_url', 'youtube_url', 'tiktok_url', 'telegram_url')
         }),
         ('Footer', {
             'fields': ('footer_copyright',)
         }),
         ('Personnalisation des couleurs', {  # <-- Nouveau fieldset pour les couleurs
             'fields': ('primary_color', 'secondary_color')
+        }),
+        ('WhatsApp', {
+            'fields': ('whatsapp_number', 'whatsapp_message')
         }),
     )
 

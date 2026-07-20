@@ -108,8 +108,27 @@ class SiteConfig(models.Model):
     address = models.CharField(max_length=255, blank=True, verbose_name="Adresse")
     phone = models.CharField(max_length=20, blank=True, verbose_name="Téléphone")
     email = models.EmailField(blank=True, verbose_name="Email")
+    # Réseaux sociaux
     facebook_url = models.URLField(blank=True, null=True, verbose_name="Lien Facebook")
     linkedin_url = models.URLField(blank=True, null=True, verbose_name="Lien LinkedIn")
+    instagram_url = models.URLField(blank=True, null=True, verbose_name="Lien Instagram")
+    youtube_url = models.URLField(blank=True, null=True, verbose_name="Lien YouTube")
+    tiktok_url = models.URLField(blank=True, null=True, verbose_name="Lien TikTok")
+    telegram_url = models.URLField(blank=True, null=True, verbose_name="Lien Telegram")
+    # contact whatsapp direct
+    whatsapp_number = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        verbose_name="Numéro WhatsApp (ex: 237691xxxxxx)"
+    )
+    whatsapp_message = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        verbose_name="Message pré-défini (optionnel)",
+        help_text="Message qui s'affichera à l'ouverture de la conversation WhatsApp"
+    )
     footer_copyright = models.CharField(max_length=200, default="© 2026 - Tous droits réservés", verbose_name="Copyright dans le footer")
     # pour changer les couleurs du site depuis le dashboard
     primary_color = ColorField(

@@ -252,3 +252,27 @@ footer .col-md-4 .social-links a:hover {
         font-size: 2.5rem !important;
     }
 }
+
+/* Bouton WhatsApp flottant */
+.btn-whatsapp {
+    background-color: #25D366 !important;
+    border-color: #25D366 !important;
+    color: #fff !important;
+    z-index: 1050;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebe5c !important;
+    border-color: #1ebe5c !important;
+    color: #fff !important;
+}
+
+@media (max-width: 576px) {
+    .btn-whatsapp {
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+    }
+    .btn-whatsapp i {
+        font-size: 1.5rem !important;
+    }
+}
