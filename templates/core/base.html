@@ -171,9 +171,8 @@
     installBtn.id = 'installPwaBtn';
     installBtn.className = 'btn btn-success position-fixed bottom-0 end-0 m-3';
     installBtn.style.display = 'none';
-    installBtn.innerHTML = '<i class="fas fa-download"></i> Installer l\'app';
+    installBtn.innerHTML = '<i class="fas fa-download"></i> Installer {{ site_config.company_name }} sur l\'écran d\'accueil';
     document.body.appendChild(installBtn);
-
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
@@ -201,7 +200,7 @@
 {% if site_config.whatsapp_number %}
 <a href="https://wa.me/{{ site_config.whatsapp_number }}?text={{ site_config.whatsapp_message|default:''|urlencode }}"
    target="_blank"
-   class="btn btn-whatsapp position-fixed bottom-0 end-0 m-4 z-3"
+   class="btn btn-whatsapp position-fixed bottom-5 end-0 m-4 z-3"
    style="border-radius:50px; padding:12px 20px; font-size:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.25); background-color:#25D366; border-color:#25D366;"
    aria-label="Contactez-nous sur WhatsApp">
    <i class="fab fa-whatsapp fa-2x me-2"></i> WhatsApp
