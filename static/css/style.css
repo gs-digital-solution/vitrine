@@ -276,3 +276,17 @@ footer .col-md-4 .social-links a:hover {
         font-size: 1.5rem !important;
     }
 }
+/* Ajustement des boutons flottants sur mobile */
+@media (max-width: 576px) {
+    .btn-whatsapp {
+        bottom: 70px !important;  /* Décale WhatsApp vers le haut */
+        padding: 8px 14px !important;
+        font-size: 0.8rem !important;
+    }
+    .btn-whatsapp i {
+        font-size: 1.3rem !important;
+    }
+    #installPwaBtn {
+        bottom: 10px !important;  /* Laisse le bouton PWA en bas */
+    }
+}
