@@ -139,6 +139,19 @@ class SiteConfig(models.Model):
         default='#0a58ca',
         verbose_name="Couleur secondaire (dégradés, survols)"
     )
+    # pour changer le thème du site de manière dynamique
+    THEME_CHOICES = [
+        ('classic', 'Classique (sobre et professionnel)'),
+        ('modern', 'Moderne (couleurs vives, ombres)'),
+        ('elegant', 'Élégant (polices fines, tons pastel)'),
+    ]
+
+    theme_choice = models.CharField(
+        max_length=20,
+        choices=THEME_CHOICES,
+        default='classic',
+        verbose_name="Thème du site"
+    )
     class Meta:
         verbose_name = "Configuration du site"
         verbose_name_plural = "Configuration du site"

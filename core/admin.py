@@ -126,6 +126,9 @@ class SiteConfigAdmin(admin.ModelAdmin):
         ('Réseaux sociaux', {
             'fields': ('facebook_url', 'linkedin_url', 'instagram_url', 'youtube_url', 'tiktok_url', 'telegram_url')
         }),
+        ('Design / Thèmes', {
+            'fields': ('theme_choice',)
+        }),
         ('Footer', {
             'fields': ('footer_copyright',)
         }),

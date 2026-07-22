@@ -29,6 +29,14 @@
 
     <!-- Vos styles personnalisés -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- Thème dynamique -->
+    {% if site_config.theme_choice == 'modern' %}
+    <link rel="stylesheet" href="{% static 'css/themes/theme-modern.css' %}">
+    {% elif site_config.theme_choice == 'elegant' %}
+    <link rel="stylesheet" href="{% static 'css/themes/theme-elegant.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'css/themes/theme-classic.css' %}">
+    {% endif %}
     <!-- PWA manifest -->
     <link rel="manifest" href="{% url 'manifest' %}">
     <!-- Theme color pour le navigateur mobile -->
