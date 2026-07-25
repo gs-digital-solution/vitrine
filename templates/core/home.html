@@ -90,26 +90,44 @@
 {% endif %}
 
 <!-- ========================================== -->
-<!-- TÉMOIGNAGES                                -->
+<!-- TÉMOIGNAGES (Carrousel)                    -->
 <!-- ========================================== -->
-
 {% if testimonials %}
 <section class="testimonials-section py-5">
     <div class="container">
         <h2 class="text-center mb-4">Ce qu'ils disent de nous</h2>
-        <div class="row">
-            {% for testimonial in testimonials %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm border-0 bg-light">
-                    <div class="card-body">
-                        <p class="card-text fst-italic">"{{ testimonial.message }}"</p>
-                        <footer class="blockquote-footer">{{ testimonial.name }}</footer>
+
+        <!-- Carrousel Bootstrap -->
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for testimonial in testimonials %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-6">
+                            <div class="card border-0 shadow-sm bg-light text-center p-4 mx-auto">
+                                <div class="card-body">
+                                    <p class="card-text fst-italic fs-5">"{{ testimonial.message }}"</p>
+                                    <footer class="blockquote-footer mt-3">{{ testimonial.name }}</footer>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+
+            <!-- Contrôles du carrousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-secondary rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-secondary rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
         </div>
-        <div class="text-center mt-3">
+
+        <div class="text-center mt-4">
             <a href="{% url 'testimonial_add' %}" class="btn btn-primary">
                 <i class="fas fa-pen"></i> Faire un témoignage
             </a>

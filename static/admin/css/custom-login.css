@@ -1,0 +1,138 @@
+/* ==========================================
+   PERSONNALISATION PAGE DE LOGIN ADMIN
+   ========================================== */
+.login {
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login #content {
+    padding: 40px 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    background: white;
+    max-width: 420px;
+    width: 100%;
+    margin: 20px;
+}
+
+.login .form-row {
+    padding: 12px 0;
+}
+
+.login .form-row label {
+    font-weight: 600;
+    color: #1e293b;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.login .form-row input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.login .form-row input:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13,110,253,0.15);
+}
+
+.login .submit-row {
+    padding: 16px 0 0;
+    text-align: center;
+}
+
+.login .submit-row input[type="submit"] {
+    background: #0d6efd;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.login .submit-row input[type="submit"]:hover {
+    background: #0a58ca;
+}
+
+.login .submit-row input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.login .password-reset-link {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+
+.login .password-reset-link a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.login .password-reset-link a:hover {
+    text-decoration: underline;
+}
+
+.errornote {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   RESPONSIVE : MOBILE & TABLETTE
+   ========================================== */
+@media (max-width: 480px) {
+    .login #content {
+        padding: 25px 18px;
+        margin: 12px;
+        border-radius: 12px;
+    }
+
+    .login .form-row input {
+        padding: 12px 12px;
+        font-size: 1rem;
+    }
+
+    .login .submit-row input[type="submit"] {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .login .form-row label {
+        font-size: 0.95rem;
+    }
+
+    .errornote {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    .login h1 {
+        font-size: 1.4rem !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .login #content {
+        padding: 35px 28px;
+        max-width: 380px;
+    }
+}

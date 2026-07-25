@@ -152,6 +152,58 @@ class SiteConfig(models.Model):
         default='classic',
         verbose_name="Thème du site"
     )
+    # pour changer la couleur ou image de fond
+    background_color = ColorField(
+        default='#ffffff',
+        verbose_name="Couleur de fond du site",
+        blank=True,
+        null=True,
+        help_text="Laisser vide pour utiliser l'image de fond"
+    )
+    background_image = models.ImageField(
+        upload_to='backgrounds/',
+        blank=True,
+        null=True,
+        verbose_name="Image de fond du site",
+        help_text="Sera utilisée si la couleur de fond est vide"
+    )
+    background_repeat = models.CharField(
+        max_length=20,
+        choices=[
+            ('no-repeat', 'No-repeat'),
+            ('repeat', 'Repeat'),
+            ('repeat-x', 'Répéter horizontalement'),
+            ('repeat-y', 'Répéter verticalement'),
+        ],
+        default='no-repeat',
+        verbose_name="Répétition de l'image"
+    )
+    background_size = models.CharField(
+        max_length=20,
+        choices=[
+            ('cover', 'Couvrir (Cover)'),
+            ('contain', 'Contenir (Contain)'),
+            ('auto', 'Auto'),
+        ],
+        default='cover',
+        verbose_name="Taille de l'image de fond"
+    )
+    background_position = models.CharField(
+        max_length=30,
+        choices=[
+            ('center center', 'Centré'),
+            ('top center', 'En haut centré'),
+            ('bottom center', 'En bas centré'),
+            ('left center', 'Gauche centré'),
+            ('right center', 'Droite centré'),
+            ('top left', 'Haut gauche'),
+            ('top right', 'Haut droite'),
+            ('bottom left', 'Bas gauche'),
+            ('bottom right', 'Bas droite'),
+        ],
+        default='center center',
+        verbose_name="Position de l'image de fond"
+    )
     class Meta:
         verbose_name = "Configuration du site"
         verbose_name_plural = "Configuration du site"

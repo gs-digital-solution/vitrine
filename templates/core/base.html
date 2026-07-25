@@ -24,6 +24,49 @@
         .hero-section { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important; }
         .blockquote-footer::before { color: var(--primary-color) !important; }
     </style>
+
+<style>
+    :root {
+        --primary-color: {{ site_config.primary_color|default:'#0d6efd' }};
+        --secondary-color: {{ site_config.secondary_color|default:'#0a58ca' }};
+        --bg-color: {{ site_config.background_color|default:'#ffffff' }};
+    }
+
+    body {
+        background-color: var(--bg-color) !important;
+        {% if site_config.background_image %}
+        background-image: url('{{ site_config.background_image.url }}') !important;
+        background-repeat: {{ site_config.background_repeat|default:'no-repeat' }} !important;
+        background-size: {{ site_config.background_size|default:'cover' }} !important;
+        background-position: {{ site_config.background_position|default:'center center' }} !important;
+        background-attachment: fixed !important;
+        {% endif %}
+        min-height: 100vh;
+    }
+
+    /* Rendre les sections TRANSPARENTES pour voir le fond */
+    .hero-section,
+    .products-section,
+    .services-section,
+    .testimonials-section,
+    .contact-section {
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+    }
+
+    /* Les cartes restent lisibles avec un fond semi-transparent */
+    .card,
+    .bg-light {
+        background-color: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Le footer garde son fond sombre pour contraster */
+    footer.bg-dark {
+        background-color: #212529 !important;
+    }
+</style>
     <!-- Font Awesome 6 (icônes) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 

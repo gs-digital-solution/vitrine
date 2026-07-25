@@ -123,12 +123,18 @@ class SiteConfigAdmin(admin.ModelAdmin):
         ('Coordonnées', {
             'fields': ('company_name', 'address', 'phone', 'email')
         }),
+        ('Fond du site (couleur ou image)', {
+            'fields': ('background_color', 'background_image', 'background_repeat', 'background_size',
+                       'background_position'),
+            'classes': ('collapse',)  # Optionnel : rend la section repliable
+        }),
         ('Réseaux sociaux', {
             'fields': ('facebook_url', 'linkedin_url', 'instagram_url', 'youtube_url', 'tiktok_url', 'telegram_url')
         }),
         ('Design / Thèmes', {
             'fields': ('theme_choice',)
         }),
+
         ('Footer', {
             'fields': ('footer_copyright',)
         }),
