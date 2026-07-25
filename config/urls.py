@@ -38,6 +38,10 @@ urlpatterns += [
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ]
 
+urlpatterns += [
+    path('google5901fe031a3697b7.html', TemplateView.as_view(template_name='google5901fe031a3697b7.html', content_type='text/html')),
+]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
