@@ -136,3 +136,24 @@
         max-width: 380px;
     }
 }
+
+/* ==========================================
+   SUPPRESSION DU HEADER DJANGO SUR LA PAGE DE LOGIN
+   ========================================== */
+.login #header {
+    display: none !important;
+}
+
+/* Ajustement du centrage pour mobile */
+@media (max-width: 480px) {
+    .login {
+        align-items: center;
+        padding: 10px;
+    }
+
+    .login #content {
+        margin: 0 auto;
+        padding: 25px 18px;
+        max-width: 95%;
+    }
+}

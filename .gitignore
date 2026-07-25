@@ -41,7 +41,17 @@ staticfiles/
 # ==========================================
 # Fichiers statiques (on ignore tout SAUF ce qui est important)
 # ==========================================
-static/
+# Ignorer tout le dossier static
+static/*
+
+# MAIS réinclure les dossiers importants
+!static/admin/
+!static/admin/css/
 !static/css/
 !static/js/
 !static/icons/
+
+# Ignorer les fichiers collectés automatiquement (si présents dans static)
+static/collected/
+static/admin/img/
+static/admin/fonts/
