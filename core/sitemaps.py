@@ -15,24 +15,28 @@ class StaticSitemap(Sitemap):
 
 
 class ProductSitemap(Sitemap):
-    """Sitemap pour les produits"""
     changefreq = "weekly"
     priority = 0.9
 
     def items(self):
         return Product.objects.filter(is_published=True)
 
+    def location(self, obj):
+        return f'/produits/{obj.id}/'
+
     def lastmod(self, obj):
         return obj.updated_at
 
 
 class ServiceSitemap(Sitemap):
-    """Sitemap pour les services"""
     changefreq = "weekly"
     priority = 0.8
 
     def items(self):
         return Service.objects.filter(is_published=True)
+
+    def location(self, obj):
+        return f'/services/{obj.id}/'
 
     def lastmod(self, obj):
         return obj.updated_at
