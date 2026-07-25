@@ -5,6 +5,11 @@ from django.conf.urls.static import static
 from core.views import (HomeView, ProductListView, ServiceListView,
                         TestimonialCreateView, ProductDetailView, ServiceDetailView,AboutView)
 from core.views import manifest_view
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import StaticSitemap, ProductSitemap, ServiceSitemap
+from django.views.generic import TemplateView
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,6 +23,22 @@ urlpatterns = [
     path('manifest.json', manifest_view, name='manifest'),
 ]
 
+# Sitemap
+sitemaps = {
+    'static': StaticSitemap,
+    'products': ProductSitemap,
+    'services': ServiceSitemap,
+}
+
+urlpatterns += [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+]
+
+urlpatterns += [
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

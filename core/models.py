@@ -108,6 +108,14 @@ class SiteConfig(models.Model):
     address = models.CharField(max_length=255, blank=True, verbose_name="Adresse")
     phone = models.CharField(max_length=20, blank=True, verbose_name="Téléphone")
     email = models.EmailField(blank=True, verbose_name="Email")
+    # nom de domaine pour le référencement google
+    domain = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name="Domaine du site (ex: vitrinecis.groupesiewe.com)",
+        help_text="Utilisé pour générer le sitemap et les liens absolus"
+    )
     # Réseaux sociaux
     facebook_url = models.URLField(blank=True, null=True, verbose_name="Lien Facebook")
     linkedin_url = models.URLField(blank=True, null=True, verbose_name="Lien LinkedIn")

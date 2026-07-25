@@ -123,6 +123,9 @@ class SiteConfigAdmin(admin.ModelAdmin):
         ('Coordonnées', {
             'fields': ('company_name', 'address', 'phone', 'email')
         }),
+        ('Référencement (SEO)', {
+            'fields': ('domain',)
+        }),
         ('Fond du site (couleur ou image)', {
             'fields': ('background_color', 'background_image', 'background_repeat', 'background_size',
                        'background_position'),

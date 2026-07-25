@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     
     # Custom apps
     'core',
+    #ACTIVER LE SITEMAP  pour le référencement google
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
