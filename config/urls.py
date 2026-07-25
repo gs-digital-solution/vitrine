@@ -8,6 +8,7 @@ from core.views import manifest_view
 from django.contrib.sitemaps.views import sitemap
 from core.sitemaps import StaticSitemap, ProductSitemap, ServiceSitemap
 from django.views.generic import TemplateView
+from core.views import google_verify
 
 
 
@@ -38,8 +39,9 @@ urlpatterns += [
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ]
 
+
 urlpatterns += [
-    path('google5901fe031a3697b7.html', TemplateView.as_view(template_name='google5901fe031a3697b7.html', content_type='text/html')),
+    path('google5901fe031a3697b7.html', google_verify, name='google_verify'),
 ]
 
 if settings.DEBUG:

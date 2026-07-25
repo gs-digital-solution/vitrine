@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Product, Service, Testimonial, SiteConfig, VisitorCounter
 from .forms import TestimonialForm
 from django.http import JsonResponse
+from django.http import HttpResponse
 
 # ========================================
 # PAGE D'ACCUEIL
@@ -133,3 +134,10 @@ class AboutView(TemplateView):
         context['site_config'] = SiteConfig.get_config()
         context['visitor_count'] = VisitorCounter.get_counter().total_visits
         return context
+
+# ========================================
+# VUE POUR LE REFERENCEMENT
+# ========================================
+
+def google_verify(request):
+    return HttpResponse('google-site-verification: google5901fe031a3697b7.html', content_type='text/html')
