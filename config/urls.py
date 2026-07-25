@@ -3,12 +3,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from core.views import (HomeView, ProductListView, ServiceListView,
-                        TestimonialCreateView, ProductDetailView, ServiceDetailView)
+                        TestimonialCreateView, ProductDetailView, ServiceDetailView,AboutView)
 from core.views import manifest_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('a-propos/', AboutView.as_view(), name='about'),
     path('produits/', ProductListView.as_view(), name='products'),
     path('services/', ServiceListView.as_view(), name='services'),
     path('temoignage/', TestimonialCreateView.as_view(), name='testimonial_add'),

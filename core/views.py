@@ -121,3 +121,15 @@ def manifest_view(request):
             {"src": "/static/icons/icon-512.png", "type": "image/png", "sizes": "512x512"}
         ]
     })
+
+# ========================================
+# VUE DE LA PAGE "À PROPOS"
+# ========================================
+class AboutView(TemplateView):
+    template_name = 'core/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['site_config'] = SiteConfig.get_config()
+        context['visitor_count'] = VisitorCounter.get_counter().total_visits
+        return context
