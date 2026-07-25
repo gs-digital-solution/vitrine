@@ -15,8 +15,8 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['site_config'] = SiteConfig.get_config()
-        context['products'] = Product.objects.filter(is_published=True)[:6]
-        context['services'] = Service.objects.filter(is_published=True)[:6]
+        context['products'] = Product.objects.filter(is_published=True)[:3]
+        context['services'] = Service.objects.filter(is_published=True)[:3]
         context['testimonials'] = Testimonial.objects.filter(is_published=True)[:6]
         context['visitor_count'] = VisitorCounter.get_counter().total_visits
         return context
